@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -g
-LDFLAGS =
+LDFLAGS = -g
 
 #repertoire des fichiers d'unitests teZZt.[ch]
 DIRUTEST = ../

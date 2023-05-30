@@ -25,7 +25,7 @@ TEST(nouvCell) {
 	free(new);
 }
 
-/*
+
 TEST(lirePref_fromFileName_exTP) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -79,16 +79,33 @@ TEST(pref2lvlh1_exTP) {
 	
 	char buffer[1024];
 	FILE * file = fmemopen(buffer, 1024, "w");
-	REQUIRE ( NULL != file);
+	REQUIRE ( NULL != file); 
 
 	printf("\033[35m\npref2lvlh1_exTP :");
 	printf("\033[0m\n");
 
 	nbRacines = lirePref_fromFileName("../pref_exTP.txt", tabEltPref, &nbEltsPref);
 
-	// TO DO
+	racine = pref2lvlh(tabEltPref, nbRacines);
+
+	REQUIRE(racine != NULL);
+	CHECK( 'A' == racine->val ); 
+
+	REQUIRE(racine->lv != NULL);
+	CHECK( 'B' == racine->lv->val );
+
+
+	REQUIRE(racine->lv->lh != NULL);
+	printf("val lv->lh : %c\n",racine->lv->lh->val );	
+	printf("val lv->lh->lh : %c\n",racine->lv->lh->lh->val );
+
+	CHECK( 'D' == racine->lv->lh->val );
+
+	//CHECK( 'C' == racine->lh->val );
+	
+
 }
-*/
+
 
 END_TEST_GROUP(ARBRE_CONSTRUCT)
 

@@ -16,21 +16,37 @@
  * @param [in, out] nbEltsPref l'adresse memoire contenant le nombre des elements du tabEltPref
  * @return le nombre de racines
  */
-//  lirePref_fromFileName()
-// {
-// // TO DO
-// }
+int lirePref_fromFileName(char * fileName, eltPrefPostFixee_t * tabEltPref ,int * nbEltsPref)
+{
+   *nbEltsPref =0;
+   int nbfils, racine=0;
+   char val;
+   FILE * flux = fopen(fileName, "r");
+   fscanf(flux,"%d ", &racine);
+
+   while(fscanf(flux,"%c %d ", &val, &nbfils) == 2){
+      tabEltPref[*nbEltsPref].val = val;
+      tabEltPref[*nbEltsPref].nbFils = nbfils;
+      *nbEltsPref = *nbEltsPref + 1;
+   }
+   fclose(flux);
+   return racine;
+}
 
 /** 
  * @brief afficher les elements de la representation prefixee sur un flux de sortie
+ * "2 (A,3) (B,2) (E,0) (J,0) (D,0) (H,1) (G,0) (C,2) (F,3) (K,0) (M,0) (T,0) (I,0)\n"
  * @param file : le flux de sortie
  * @param [in, out] tabEltPref tableau des elements de la representation prefixee
  * @param [in, out] nbEltsPref le nombre des elements du tabEltPref
  */
-// void printTabEltPref(FILE *file, eltPrefPostFixee_t *tabEltPref, int nbEltsPref)
-// {
-    
-// }
+void printTabEltPref(FILE *file, eltPrefPostFixee_t *tabEltPref, int nbEltsPref)
+{
+    for(int i=0; i<nbEltsPref-1; i++){
+      fprintf(file, "(%c,%d) ", tabEltPref[i].val, tabEltPref[i].nbFils);
+    }
+   fprintf(file, "(%c,%d)\n", tabEltPref[nbEltsPref-1].val, tabEltPref[nbEltsPref-1].nbFils);
+}
 
 /** 
  * @brief creer et initialiser un nouveau point de l'arborescence
@@ -54,10 +70,44 @@ cell_lvlh_t * allocPoint(char val)
  *     - NULL si l'arbre resultatnt est vide
  *     - l'adresse de la racine de l'arbre sinon
 */
-//  pref2lvlh()
-// {
-// // TO DO
-// }
+ cell_lvlh_t* pref2lvlh( eltPrefPostFixee_t *tabEltPref, int nbRacines)
+{
+   pile_t * pile = initPile(1028);
+   cell_lvlh_t * tete = NULL;
+   cell_lvlh_t* nouv;
+   eltPrefPostFixee_t* courLc = tabEltPref;
+   cell_lvlh_t ** pprec = &tete;
+   int code;
+   eltType_pile eltPile;
+
+   int nb_fils_ou_frere = nbRacines;
+   //courLc= courLc +1;
+   while (nb_fils_ou_frere > 0 || !estVidePile(pile)){
+      if(nb_fils_ou_frere > 0){
+         nouv = allocPoint(courLc->val);
+         *pprec = nouv;
+         eltPile.nbFils_ou_Freres=nb_fils_ou_frere-1;
+         //eltPile.adrCell = nouv;
+         eltPile.adrPrec = &(nouv->lh);    
+         
+         empiler(pile, &eltPile,&code);
+         pprec = &(nouv->lv);
+         courLc = courLc +1;
+         nb_fils_ou_frere = courLc->nbFils; 
+
+      }
+      else {
+         if(!estVidePile(pile)){
+            depiler(pile, &eltPile,&code);
+            nb_fils_ou_frere = eltPile.nbFils_ou_Freres;
+            pprec = eltPile.adrPrec;
+         }
+      }
+   }
+   libererPile(&pile);
+   return tete;
+
+}
 
 /** TO DO
  * @brief liberer les blocs memoire d'un arbre
