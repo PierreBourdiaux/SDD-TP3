@@ -92,8 +92,9 @@ cell_lvlh_t * allocPoint(char val)
          
          empiler(pile, &eltPile,&code);
          pprec = &(nouv->lv);
-         courLc = courLc +1;
          nb_fils_ou_frere = courLc->nbFils; 
+
+         courLc = courLc +1;
 
       }
       else {
@@ -113,7 +114,29 @@ cell_lvlh_t * allocPoint(char val)
  * @brief liberer les blocs memoire d'un arbre
  * @param [in] adrPtRacine l'adresse du pointeur de la racine d'un arbre
  */
-//  libererArbre()
-// {
-// // TO DO
-// }
+void libererArbre(cell_lvlh_t ** adrPtRacine )
+{
+   eltType_pile eltPile;
+   pile_t * pile = initPile(128);
+   cell_lvlh_t * cour = *adrPtRacine;
+   cell_lvlh_t * tmp;
+   int code = 1;
+   if(*adrPtRacine != NULL){
+      while(cour != NULL || !estVidePile(pile)){
+         printf("ALED\n");
+         if(cour != NULL){
+            eltPile.adrCell = cour;
+            empiler(pile, &eltPile, &code);
+            cour = cour->lv;
+
+         }
+         else{
+              depiler(pile, &eltPile, &code);
+              tmp = eltPile.adrCell;
+              cour = tmp->lh;
+              free(tmp);
+         }
+      }
+   }
+}
+

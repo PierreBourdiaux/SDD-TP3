@@ -46,6 +46,6 @@ cell_lvlh_t * allocPoint(char val);
  * @brief liberer les blocs memoire d'un arbre
  * @param [in] adrPtRacine l'adresse du pointeur de la racine d'un arbre
  */
-// libererArbre();
+void libererArbre(cell_lvlh_t ** adrPtRacine);
 
 #endif

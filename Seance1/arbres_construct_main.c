@@ -94,15 +94,36 @@ TEST(pref2lvlh1_exTP) {
 	REQUIRE(racine->lv != NULL);
 	CHECK( 'B' == racine->lv->val );
 
+	REQUIRE(racine->lv->lv != NULL);
+	CHECK( 'E' == racine->lv->lv->val );
+	
+	REQUIRE(racine->lv->lv->lh != NULL);
+	CHECK( 'J' == racine->lv->lv->lh->val );
+
 
 	REQUIRE(racine->lv->lh != NULL);
-	printf("val lv->lh : %c\n",racine->lv->lh->val );	
-	printf("val lv->lh->lh : %c\n",racine->lv->lh->lh->val );
-
 	CHECK( 'D' == racine->lv->lh->val );
 
-	//CHECK( 'C' == racine->lh->val );
-	
+	REQUIRE(racine->lv->lh->lh != NULL);
+	CHECK( 'H' == racine->lv->lh->lh->val );
+
+	REQUIRE(racine->lv->lh->lh->lv != NULL);
+	CHECK( 'G' == racine->lv->lh->lh->lv->val );
+
+	REQUIRE(racine->lh!= NULL);
+	CHECK( 'C' == racine->lh->val );	
+
+	REQUIRE(racine->lh->lv->lv!= NULL);
+	CHECK( 'K' == racine->lh->lv->lv->val );
+
+	REQUIRE(racine->lh->lv->lv->lh!= NULL);
+	CHECK( 'M' == racine->lh->lv->lv->lh->val );
+
+	REQUIRE(racine->lh->lv->lv->lh->lh!= NULL);
+	CHECK( 'T' == racine->lh->lv->lv->lh->lh->val );
+
+	libererArbre(&racine);
+
 
 }
 
