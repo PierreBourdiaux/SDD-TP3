@@ -123,7 +123,6 @@ void libererArbre(cell_lvlh_t ** adrPtRacine )
    int code = 1;
    if(*adrPtRacine != NULL){
       while(cour != NULL || !estVidePile(pile)){
-         printf("ALED\n");
          if(cour != NULL){
             eltPile.adrCell = cour;
             empiler(pile, &eltPile, &code);
@@ -138,5 +137,7 @@ void libererArbre(cell_lvlh_t ** adrPtRacine )
          }
       }
    }
+   libererPile(&pile);
+   *adrPtRacine = NULL;
 }
 

@@ -124,6 +124,10 @@ TEST(pref2lvlh1_exTP) {
 
 	libererArbre(&racine);
 
+	CHECK(racine == NULL);
+
+	fclose(file);
+
 
 }
 
