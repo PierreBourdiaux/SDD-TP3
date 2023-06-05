@@ -9,7 +9,7 @@
 #include "../eltsArbre.h"
 #include "../Seance1/arbres_construct.h"
 #include "arbres_parcours.h"
-#include "../../teZZt.h"
+#include "../teZZt.h"
 
 
 BEGIN_TEST_GROUP(ARBRE_PARCOURS)
@@ -26,7 +26,7 @@ TEST(nouvCell) {
 	free(new);
 }
 
-/*
+
 TEST(getNbFils_ou_Freres) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -64,6 +64,7 @@ TEST(getNbFils_ou_Freres) {
 	libererArbre(&racine);
 }
 
+
 TEST(printPostfixee) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -87,7 +88,7 @@ TEST(printPostfixee) {
 	
 	libererArbre(&racine);
 }
-*/
+
 
 END_TEST_GROUP(ARBRE_PARCOURS)
 
