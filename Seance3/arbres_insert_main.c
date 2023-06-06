@@ -9,7 +9,7 @@
 #include "../eltsArbre.h"
 #include "../Seance1/arbres_construct.h"
 #include "arbres_insert.h"
-#include "../../teZZt.h"
+#include "../teZZt.h"
 
 
 BEGIN_TEST_GROUP(ARBRE_INSERT)
@@ -26,7 +26,7 @@ TEST(nouvCell) {
 	free(new);
 }
 
-/*
+
 TEST(rechercher_v) {
 	int nbRacines = 0;
 	int nbEltsPref = 0;
@@ -47,7 +47,54 @@ TEST(rechercher_v) {
 	REQUIRE( NULL != pere );
 	CHECK( 'A' == pere->val );
 
-// autres tests a ajouter
+	pere = rechercher_v(racine, 'B');   
+	REQUIRE( NULL != pere );
+	CHECK( 'B' == pere->val );
+
+	pere = rechercher_v(racine, 'E');   
+	REQUIRE( NULL != pere );
+	CHECK( 'E' == pere->val );
+
+	pere = rechercher_v(racine, 'J');   
+	REQUIRE( NULL != pere );
+	CHECK( 'J' == pere->val );
+
+	pere = rechercher_v(racine, 'D');  
+	REQUIRE( NULL != pere );
+	CHECK( 'D' == pere->val );
+
+	pere = rechercher_v(racine, 'H'); 
+	REQUIRE( NULL != pere );
+	CHECK( 'H' == pere->val );
+
+	pere = rechercher_v(racine, 'G');  
+	REQUIRE( NULL != pere );
+	CHECK( 'G' == pere->val );
+
+	pere = rechercher_v(racine, 'C'); 
+	REQUIRE( NULL != pere );
+	CHECK( 'C' == pere->val );
+
+	pere = rechercher_v(racine, 'F');   
+	REQUIRE( NULL != pere );
+	CHECK( 'F' == pere->val );
+
+	pere = rechercher_v(racine, 'K');  
+	REQUIRE( NULL != pere );
+	CHECK( 'K' == pere->val );
+
+	pere = rechercher_v(racine, 'M');   
+	REQUIRE( NULL != pere );
+	CHECK( 'M' == pere->val );
+
+	pere = rechercher_v(racine, 'T');  
+	REQUIRE( NULL != pere );
+	CHECK( 'T' == pere->val );
+
+	pere = rechercher_v(racine, 'I');   
+	REQUIRE( NULL != pere );
+	CHECK( 'I' == pere->val );
+
 
 	libererArbre(&racine);
 }
@@ -77,7 +124,7 @@ TEST(rechercherPrecFilsTries) {
 
 	libererArbre(&racine);
 }
-
+/*
 TEST(insererTrie) {
 // TO DO
 }
