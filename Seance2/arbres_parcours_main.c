@@ -62,6 +62,7 @@ TEST(getNbFils_ou_Freres) {
 	CHECK( 1 == getNbFils_ou_Freres(racine->lv->lh->lh->lv) ); // 1 fils
 
 	libererArbre(&racine);
+	fclose(file);
 }
 
 
