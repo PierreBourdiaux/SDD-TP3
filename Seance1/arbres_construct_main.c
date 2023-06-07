@@ -100,7 +100,6 @@ TEST(pref2lvlh1_exTP) {
 	REQUIRE(racine->lv->lv->lh != NULL);
 	CHECK( 'J' == racine->lv->lv->lh->val );
 
-
 	REQUIRE(racine->lv->lh != NULL);
 	CHECK( 'D' == racine->lv->lh->val );
 

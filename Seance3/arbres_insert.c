@@ -26,7 +26,7 @@ cell_lvlh_t* rechercher_v(cell_lvlh_t * racine, char v)
     int code;
     eltType_pile eltPile;
     int fin = 0;
-    while(fin==0){
+    while(fin==0){ // on fait le meme parcours en profondeur que pour l'affichage
         while(cour!=NULL){
             eltPile.adrCell = cour;
             empiler(pile,&eltPile,&code);
@@ -37,7 +37,7 @@ cell_lvlh_t* rechercher_v(cell_lvlh_t * racine, char v)
             cour = eltPile.adrCell;
             if(cour->val == v){
                 retour = cour;
-                fin=1;
+                fin=1;          // on arrete le parcours dès la premiere rencontre de la valeur 
             }
             cour = cour->lh;
         }
@@ -57,8 +57,8 @@ cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t * adrPere,char w)
 {
     cell_lvlh_t * cour = adrPere->lv;
     cell_lvlh_t ** pprec= &(adrPere->lv);
-    while(cour!=NULL && cour->val<w){
-        pprec = &(cour->lh);
+    while(cour!=NULL && cour->val<w){ // recherche d'une valeur dans une liste chainé trié 
+        pprec = &(cour->lh);          // par odre alphabétique 
         cour = cour->lh;
     }
     return pprec;
@@ -73,15 +73,15 @@ cell_lvlh_t** rechercherPrecFilsTries(cell_lvlh_t * adrPere,char w)
  */
 int insererTrie(cell_lvlh_t* racine, char v, char w)
 {
-    int retour = 0;
+    int retour = 0; // 0 si raté / 1 si reussi
     cell_lvlh_t ** pprec=NULL;
     cell_lvlh_t * nouv=NULL;
-    cell_lvlh_t * pere = rechercher_v(racine,v);
+    cell_lvlh_t * pere = rechercher_v(racine,v); // on cherche le pere 
     if(pere != NULL){
-        pprec=rechercherPrecFilsTries(pere,w);
-        if(pprec != NULL){
+        pprec=rechercherPrecFilsTries(pere,w); //on cherche l'endroit dans la liste chainé des fils 
+        if(pprec != NULL){                     // où on insere w 
             nouv = allocPoint(w);
-            if(nouv!=NULL){
+            if(nouv!=NULL){  // si l'allocation a réussi, on rentre le maillon dans la liste
                 nouv->lh = *pprec;
                 *pprec = nouv;
                 retour =1;

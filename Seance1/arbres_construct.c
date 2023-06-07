@@ -83,11 +83,10 @@ cell_lvlh_t * allocPoint(char val)
    int nb_fils_ou_frere = nbRacines;
    //courLc= courLc +1;
    while (nb_fils_ou_frere > 0 || !estVidePile(pile)){
-      if(nb_fils_ou_frere > 0){
+      if(nb_fils_ou_frere > 0){ // on creer le point, on le met dans la pile et on descend vers le fils
          nouv = allocPoint(courLc->val);
          *pprec = nouv;
          eltPile.nbFils_ou_Freres=nb_fils_ou_frere-1;
-         //eltPile.adrCell = nouv;
          eltPile.adrPrec = &(nouv->lh);    
          
          empiler(pile, &eltPile,&code);
@@ -98,7 +97,7 @@ cell_lvlh_t * allocPoint(char val)
 
       }
       else {
-         if(!estVidePile(pile)){
+         if(!estVidePile(pile)){ // n'a pas de fils, on remonte dans l'arborescence 
             depiler(pile, &eltPile,&code);
             nb_fils_ou_frere = eltPile.nbFils_ou_Freres;
             pprec = eltPile.adrPrec;
@@ -125,11 +124,11 @@ void libererArbre(cell_lvlh_t ** adrPtRacine )
       while(cour != NULL || !estVidePile(pile)){
          if(cour != NULL){
             eltPile.adrCell = cour;
-            empiler(pile, &eltPile, &code);
+            empiler(pile, &eltPile, &code); // on va le plus profondement possible 
             cour = cour->lv;
 
          }
-         else{
+         else{ // on est surune feuille, on depile pour la récuperer et liberer et on passe au suivant 
               depiler(pile, &eltPile, &code);
               tmp = eltPile.adrCell;
               cour = tmp->lh;

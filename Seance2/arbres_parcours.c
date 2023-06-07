@@ -15,7 +15,7 @@
  * @param [in] ptCell pointeur vers le 1er frere
  * @return le nombre de fils ou freres
  */
-int getNbFils_ou_Freres(cell_lvlh_t * ptCell)
+int getNbFils_ou_Freres(cell_lvlh_t * ptCell) // parcours de liste chainé 
 {
     int i=0;
     while(ptCell != NULL){
@@ -32,8 +32,8 @@ int getNbFils_ou_Freres(cell_lvlh_t * ptCell)
  * @param [in] racine la racine de l'arborescence
  */
 void printPostfixee(FILE* file, cell_lvlh_t* racine)
-{
-
+{//meme principe que la libération, parcours en profondeur
+ // mais on affiche a la place de liberer    
     cell_lvlh_t * cour = racine;
     pile_t * pile = initPile(1028);
     int code;
@@ -48,7 +48,7 @@ void printPostfixee(FILE* file, cell_lvlh_t* racine)
         if(!estVidePile(pile)){
             depiler(pile,&eltPile, &code);
             cour = eltPile.adrCell;
-            fprintf(file,"(%c,%d) ", cour->val, getNbFils_ou_Freres(cour->lv));
+            fprintf(file,"(%c,%d) ", cour->val, getNbFils_ou_Freres(cour->lv));//on recupere le nombre de fils pour l'affichage 
             cour = cour->lh;
         }
         else fin = 1;
