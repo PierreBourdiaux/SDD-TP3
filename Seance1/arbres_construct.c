@@ -21,10 +21,10 @@ int lirePref_fromFileName(char * fileName, eltPrefPostFixee_t * tabEltPref ,int 
    *nbEltsPref =0;
    int nbfils, racine=0;
    char val;
-   FILE * flux = fopen(fileName, "r");
-   fscanf(flux,"%d ", &racine);
+   FILE * flux = fopen(fileName, "r"); // ouverture du fichier 
+   fscanf(flux,"%d ", &racine); // nb de ravines
 
-   while(fscanf(flux,"%c %d ", &val, &nbfils) == 2){
+   while(fscanf(flux,"%c %d ", &val, &nbfils) == 2){ // tant qu'on lis 2 valeurs 
       tabEltPref[*nbEltsPref].val = val;
       tabEltPref[*nbEltsPref].nbFils = nbfils;
       *nbEltsPref = *nbEltsPref + 1;
@@ -72,7 +72,7 @@ cell_lvlh_t * allocPoint(char val)
 */
  cell_lvlh_t* pref2lvlh( eltPrefPostFixee_t *tabEltPref, int nbRacines)
 {
-   pile_t * pile = initPile(1028);
+   pile_t * pile = initPile(1028); // initialisation de la pile
    cell_lvlh_t * tete = NULL;
    cell_lvlh_t* nouv;
    eltPrefPostFixee_t* courLc = tabEltPref;

@@ -8,6 +8,7 @@
 #include "../pile.h"
 #include "../eltsArbre.h"
 #include "arbres_insert.h"
+#include "../Seance1/arbres_construct.h"
 
 
 /**
@@ -74,12 +75,12 @@ int insererTrie(cell_lvlh_t* racine, char v, char w)
 {
     int retour = 0;
     cell_lvlh_t ** pprec=NULL;
-    cell_lvlh_t * nouv;
+    cell_lvlh_t * nouv=NULL;
     cell_lvlh_t * pere = rechercher_v(racine,v);
-    if(pere != null){
+    if(pere != NULL){
         pprec=rechercherPrecFilsTries(pere,w);
         if(pprec != NULL){
-            nouv = allocPoint(courLc->val);
+            nouv = allocPoint(w);
             if(nouv!=NULL){
                 nouv->lh = *pprec;
                 *pprec = nouv;
