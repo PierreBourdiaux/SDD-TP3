@@ -41,7 +41,6 @@ typedef struct pile
     eltType_pile * base;
 
 }pile_t;
-// taille sommet base 
 
 /** TO DO
  * @brief Initialiser une pile du type pile_t
